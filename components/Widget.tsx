@@ -34,7 +34,7 @@ export default class Widget extends Component<WidgetProps, {}> {
     let content;
 
     if (loading) {
-      content = <LoadingIndicator size="medium"/>;
+      content = <LoadingIndicator size="medium" />;
     } else if (error) {
       content = <ErrorIcon />;
     } else {

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Title = styled.h1`
   flex: 1 1 100%;
@@ -6,6 +6,6 @@ const Title = styled.h1`
   margin: 0;
   padding: 0;
   text-align: center;
-`
+`;
 
-export default Title
+export default Title;

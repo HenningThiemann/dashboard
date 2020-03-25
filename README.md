@@ -116,7 +116,7 @@ import DateTime from '../components/widgets/datetime'
 
 * `interval`: Refresh interval in milliseconds (Default: `10000`)
 
-### [Jenkins Job Status](./components/widgets/jenkins/job-status.js)
+### [Jenkins Job Status](components/widgets/jenkins/JenkinsJobStatus.tsx)
 
 #### Example
 
@@ -142,7 +142,7 @@ For Jenkins multibranch projects add `branch` to the object.
 * `jobs`: List of all jobs
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [Jenkins Job Health](./components/widgets/jenkins/job-health.js)
+### [Jenkins Job Health](components/widgets/jenkins/JenkinsJobHealth.tsx)
 
 #### Example
 
@@ -169,7 +169,7 @@ For Jenkins multibranch projects add `branch` to the object.
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
 
-### [Jenkins Build Duration](./components/widgets/jenkins/build-duration.js)
+### [Jenkins Build Duration](components/widgets/jenkins/JenkinsBuildBuration.tsx)
 
 #### Example
 
@@ -195,7 +195,7 @@ For Jenkins multibranch projects add `branch` to the object.
 * `jobs`: List of all jobs
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [JIRA Issue Count](./components/widgets/jira/issue-count.js)
+### [JIRA Issue Count](components/widgets/jira/JiraIssueCount.tsx)
 
 #### Example
 
@@ -219,7 +219,7 @@ For Jenkins multibranch projects add `branch` to the object.
 * `query`: JIRA search query (`jql`)
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [JIRA Sprint Days Remaining](./components/widgets/jira/sprint-days-remaining.js)
+### [JIRA Sprint Days Remaining](components/widgets/jira/JiraSprintDaysRemaining.tsx)
 
 #### Example
 
@@ -305,7 +305,7 @@ import PageSpeedInsightsStats from '../components/widgets/pagespeed-insights/sta
   * Acceptable values: `desktop` | `mobile`
 * `filterThirdPartyResources`: Indicates if third party resources should be filtered out (Default: `false`)
 
-### [SonarQube](./components/widgets/sonarqube/index.js)
+### [SonarQube](components/widgets/sonarqube/SonarQube.tsx)
 
 #### Example
 
@@ -371,7 +371,7 @@ import GitHubIssueCount from '../components/widgets/github/issue-count'
 * `repository`: Name of the repository
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [Title](./components/widgets/title/index.js)
+### [Title](components/widgets/title/Title.tsx)
 
 #### Example
 

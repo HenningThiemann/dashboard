@@ -1,82 +1,75 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
-import { object, string, array, number } from "yup";
-
+import { array, number, object, string } from "yup";
 import Widget from "../../Widget";
-import Link from "../../Link";
-import Table, { Th, Td } from "../../Table";
+import Table, { Td, Th } from "../../Table";
+import Badge from "../../Badge";
 import LoadingIndicator from "../../LoadingIndicator";
 import { basicAuthHeader } from "../../../lib/auth";
+import { IJenkinsBuild, IJenkinsJob } from "./JenkinsBuildBuration";
 
-const Kpi = styled.span`
-  color: ${(props) => props.theme.palette.primaryColor};
-  font-weight: 700;
-  font-size: 20px;
+const jenkinsBadgeColor = ({ theme, status }) => {
+  switch (status) {
+    case "FAILURE":
+      return theme.palette.errorColor;
+    case "UNSTABLE":
+      return theme.palette.warnColor;
+    case "SUCCESS":
+      return theme.palette.successColor;
+    case "ABORTED":
+    case "NOT_BUILT":
+      return theme.palette.disabledColor;
+    default:
+      // null = 'In Progress'
+      return "transparent";
+  }
+};
+
+const JenkinsBadge = styled(Badge)`
+  background-color: ${jenkinsBadgeColor};
 `;
 
-const schema = object().shape({
-  url: string().url().required(),
-  jobs: array(
-    object({
-      label: string().required(),
-      path: string().required(),
-      branch: string(),
-    })
-  ).required(),
-  interval: number(),
-  title: string(),
-  authKey: string(),
-});
+export interface IJenkinsJobStatusProps {
+  url: string;
+  jobs: Array<IJenkinsJob>;
+  interval: number;
+  title: string;
+  authKey: string;
+}
 
-export default class JenkinsBuildDuration extends Component {
+export interface IJenkinsJobStatusState {
+  loading: boolean;
+  error: boolean;
+  builds: Array<IJenkinsBuild>;
+}
+
+export default class JenkinsJobStatus extends Component<
+  IJenkinsJobStatusProps,
+  IJenkinsJobStatusState
+> {
   static defaultProps = {
     interval: 1000 * 60 * 5,
-    title: "Build Duration",
+    title: "Job Status",
   };
 
   state = {
     loading: true,
     error: false,
+    builds: [],
   };
 
+  timeout: any = 0;
+
   componentDidMount() {
-    schema
-      .validate(this.props)
-      .then(() => this.fetchInformation())
-      .catch((err) => {
-        console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
-        this.setState({ error: true, loading: false });
-      });
+    this.fetchInformation().catch((err) => {
+      console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
+      this.setState({ error: true, loading: false });
+    });
   }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
-  }
-
-  formatTime(ms) {
-    const s = ms / 1000;
-
-    if (s > 60) {
-      const min = Math.floor(s / 60);
-      let minSec = Math.round(s - min * 60);
-      minSec = minSec.toString().length === 1 ? `0${minSec}` : minSec;
-
-      return (
-        <>
-          <Kpi>
-            {min}:{minSec}
-          </Kpi>{" "}
-          min
-        </>
-      );
-    }
-
-    return (
-      <>
-        <Kpi>{Math.round(s)}</Kpi> sec
-      </>
-    );
   }
 
   async fetchInformation() {
@@ -84,7 +77,7 @@ export default class JenkinsBuildDuration extends Component {
     const opts = authKey ? { headers: basicAuthHeader(authKey) } : {};
 
     try {
-      const builds = await Promise.all(
+      const builds: Array<IJenkinsBuild> = await Promise.all(
         jobs.map(async (job) => {
           const branch = job.branch ? `job/${job.branch}/` : "";
           const res = await fetch(
@@ -96,7 +89,8 @@ export default class JenkinsBuildDuration extends Component {
           return {
             name: job.label,
             url: json.url,
-            duration: json.duration,
+            result: json.result,
+            duration: 0,
           };
         })
       );
@@ -125,13 +119,13 @@ export default class JenkinsBuildDuration extends Component {
                 <tr key={`jenkins-${build.name}`}>
                   <Th>{build.name}</Th>
                   <Td>
-                    <Link href={build.url} title={build.duration}>
-                      {build.duration ? (
-                        this.formatTime(build.duration)
+                    <a href={build.url} title={build.result}>
+                      {build.result ? (
+                        <JenkinsBadge status={build.result} />
                       ) : (
                         <LoadingIndicator size="small" />
                       )}
-                    </Link>
+                    </a>
                   </Td>
                 </tr>
               ))}

@@ -6,11 +6,11 @@ import Dashboard from "../components/Dashboard";
 import DateTime from "../components/widgets/datetime/DateTime";
 import PageSpeedInsightsScore from "../components/widgets/pagespeed-insights/PageSpeedInsideScore";
 import PageSpeedInsightsStats from "../components/widgets/pagespeed-insights/PageSpeedInsightsStats";
-import JiraIssueCount from "../components/widgets/jira/issue-count";
-import SonarQube from "../components/widgets/sonarqube";
-import JenkinsJobStatus from "../components/widgets/jenkins/job-status";
-import JenkinsJobHealth from "../components/widgets/jenkins/job-health";
-import JenkinsBuildDuration from "../components/widgets/jenkins/build-duration";
+import JiraIssueCount from "../components/widgets/jira/JiraIssueCount";
+import SonarQube from "../components/widgets/sonarqube/SonarQube";
+import JenkinsJobStatus from "../components/widgets/jenkins/JenkinsJobStatus";
+import JenkinsJobHealth from "../components/widgets/jenkins/JenkinsJobHealth";
+import JenkinsBuildDuration from "../components/widgets/jenkins/JenkinsBuildBuration";
 import BitbucketPullRequestCount from "../components/widgets/bitbucket/BitbucketPullRequestCount";
 import ElasticsearchHitCount from "../components/widgets/elasticsearch/ElasticsearchHitCount";
 import GitHubIssueCount from "../components/widgets/github/GitHubIssueCount";
@@ -31,6 +31,7 @@ export default () => (
       title="JIRA Open Bugs"
       url="https://crossorigin.me/https://jira.atlassian.com"
       query='type=Bug AND project="Bitbucket Server" AND resolution=Unresolved ORDER BY priority DESC,created DESC'
+      authKey={"jira"}
     />
 
     <BitbucketPullRequestCount
@@ -44,30 +45,34 @@ export default () => (
     <SonarQube
       url="https://crossorigin.me/https://sonarcloud.io"
       componentKey="com.icegreen:greenmail-parent"
+      authKey={"sonarqube"}
     />
 
     <JenkinsJobStatus
       url="https://crossorigin.me/https://builds.apache.org"
       jobs={[
-        { label: "JMeter", path: "JMeter-trunk" },
+        { label: "JMeter", path: "JMeter-trunk", branch: "" },
         { label: "Log4j Kotlin", path: "Log4jKotlin", branch: "master" },
       ]}
+      authKey={"jenkins"}
     />
 
     <JenkinsJobHealth
       url="https://crossorigin.me/https://builds.apache.org"
       jobs={[
-        { label: "JMeter", path: "JMeter-trunk" },
+        { label: "JMeter", path: "JMeter-trunk", branch: "" },
         { label: "Log4j Kotlin", path: "Log4jKotlin", branch: "master" },
       ]}
+      authKey={"jenkins"}
     />
 
     <JenkinsBuildDuration
       url="https://crossorigin.me/https://builds.apache.org"
       jobs={[
-        { label: "JMeter", path: "JMeter-trunk" },
+        { label: "JMeter", path: "JMeter-trunk", branch: "" },
         { label: "Log4j Kotlin", path: "Log4jKotlin", branch: "master" },
       ]}
+      authKey={"jenkins"}
     />
 
     <ElasticsearchHitCount
