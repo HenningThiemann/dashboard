@@ -3,10 +3,10 @@ import fetch from 'isomorphic-unfetch'
 import styled from 'styled-components'
 import { object, string, array, number } from 'yup'
 
-import Widget from '../../widget'
-import Link from '../../link'
-import Table, { Th, Td } from '../../table'
-import LoadingIndicator from '../../loading-indicator'
+import Widget from '../../Widget'
+import Link from '../../Link'
+import Table, { Th, Td } from '../../Table'
+import LoadingIndicator from '../../LoadingIndicator'
 import { basicAuthHeader } from '../../../lib/auth'
 
 const jenkinsKpiColor = ({ theme, value }) => {

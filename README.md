@@ -102,7 +102,7 @@ For an example, see [pages/index.js](./pages/index.js).
 
 ## Available Widgets
 
-### [DateTime](./components/widgets/datetime/index.js)
+### [DateTime](components/widgets/datetime/DateTime.tsx)
 
 #### Example
 
@@ -241,7 +241,7 @@ import JiraSprintDaysRemaining from '../components/widgets/jira/sprint-days-rema
 * `boardId`: JIRA board id
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [Bitbucket PullRequest Count](./components/widgets/bitbucket/pull-request-count.js)
+### [Bitbucket PullRequest Count](components/widgets/bitbucket/BitbucketPullRequestCount.tsx)
 
 #### Example
 
@@ -267,7 +267,7 @@ import BitbucketPullRequestCount from '../components/widgets/bitbucket/pull-requ
 * `users`: Bitbucket user slugs as an array
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [PageSpeed Insights Score](./components/widgets/pagespeed-insights/score.js)
+### [PageSpeed Insights Score](components/widgets/pagespeed-insights/PageSpeedInsideScore.tsx)
 
 #### Example
 
@@ -286,7 +286,7 @@ import PageSpeedInsightsScore from '../components/widgets/pagespeed-insights/sco
   * Acceptable values: `desktop` | `mobile`
 * `filterThirdPartyResources`: Indicates if third party resources should be filtered out (Default: `false`)
 
-### [PageSpeed Insights Stats](./components/widgets/pagespeed-insights/stats.js)
+### [PageSpeed Insights Stats](components/widgets/pagespeed-insights/PageSpeedInsightsStats.tsx)
 
 #### Example
 
@@ -326,7 +326,7 @@ import SonarQube from '../components/widgets/sonarqube'
 * `componentKey`: SonarQube project key
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [Elasticsearch Hit Count](./components/widgets/elasticsearch/hit-count.js)
+### [Elasticsearch Hit Count](components/widgets/elasticsearch/ElasticsearchHitCount.tsx)
 
 #### Example
 
@@ -350,7 +350,7 @@ import ElasticsearchHitCount from '../components/widgets/elasticsearch/hit-count
 * `query`: Elasticsearch query
 * `authKey`: Credential key, defined in [auth.js](./auth.js)
 
-### [GitHub Issue Count](./components/widgets/github/issue-count.js)
+### [GitHub Issue Count](components/widgets/github/GitHubIssueCount.tsx)
 
 #### Example
 
@@ -383,7 +383,7 @@ import Title from '../components/widgets/title'
 
 ## Available Themes
 
-### [light](./styles/light-theme.js)
+### [light](styles/light-theme.ts)
 
 #### Example
 
@@ -399,7 +399,7 @@ import lightTheme from '../styles/light-theme'
 
 ![dashboard-light](https://cloud.githubusercontent.com/assets/457834/26214930/8c065dce-3bfe-11e7-9da0-2d6ebba2dfb8.png)
 
-### [dark](./styles/dark-theme.js)
+### [dark](styles/dark-theme.ts)
 
 #### Example
 

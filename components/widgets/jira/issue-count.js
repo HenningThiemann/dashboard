@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { object, string, number } from 'yup'
-import Widget from '../../widget'
-import Counter from '../../counter'
+import Widget from '../../Widget'
+import Counter from '../../Counter'
 import { basicAuthHeader } from '../../../lib/auth'
 
 const schema = object().shape({

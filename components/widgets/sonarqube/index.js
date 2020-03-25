@@ -2,9 +2,9 @@ import { Component } from 'react'
 import styled from 'styled-components'
 import fetch from 'isomorphic-unfetch'
 import { object, string, number } from 'yup'
-import Widget from '../../widget'
-import Table, { Th, Td } from '../../table'
-import Badge from '../../badge'
+import Widget from '../../Widget'
+import Table, { Th, Td } from '../../Table'
+import Badge from '../../Badge'
 import { basicAuthHeader } from '../../../lib/auth'
 
 const alertColor = ({ theme, children }) => {

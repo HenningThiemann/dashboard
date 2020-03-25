@@ -2,7 +2,7 @@
   "name": "dashboard",
   "version": "1.0.0",
   "description": "Your Team Dashboard",
-  "main": "pages/index.js",
+  "main": "pages/index.tsx",
   "private": true,
   "scripts": {
     "dev": "next",
@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/danielbayerlein/dashboard#readme",
   "dependencies": {
+    "@types/node": "^13.9.2",
+    "@types/react": "^16.9.25",
     "babel-plugin-styled-components": "^1.10.7",
     "dotenv-webpack": "^1.7.0",
     "isomorphic-unfetch": "^3.0.0",
@@ -36,6 +38,7 @@
     "react-dom": "^16.13.0",
     "styled-components": "^4.4.1",
     "tinytime": "^0.2.6",
+    "typescript": "^3.8.3",
     "yup": "^0.28.1"
   },
   "devDependencies": {
@@ -45,7 +48,8 @@
     "stylelint": "^13.2.1",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0"
+    "stylelint-processor-styled-components": "^1.10.0",
+    "prettier": "^2.0.1"
   },
   "standard": {
     "parser": "babel-eslint"
