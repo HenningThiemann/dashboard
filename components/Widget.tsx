@@ -21,13 +21,10 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-export interface WidgetProps {
-  error: boolean;
-  loading: boolean;
-  title: string;
-}
-
-export default class Widget extends Component<WidgetProps, {}> {
+export default class Widget extends Component<
+  { error: boolean; loading: boolean; title: string },
+  {}
+> {
   render() {
     const { loading, children, error, title } = this.props;
 

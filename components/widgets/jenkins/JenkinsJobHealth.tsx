@@ -7,7 +7,11 @@ import Link from "../../Link";
 import Table, { Td, Th } from "../../Table";
 import LoadingIndicator from "../../LoadingIndicator";
 import { basicAuthHeader } from "../../../lib/auth";
-import { IJenkinsBuild, IJenkinsJob } from "./JenkinsBuildBuration";
+import {
+  IJenkinsBuild,
+  IJenkinsJobHealthProps,
+  IJenkinsJobHealthState,
+} from "./jenkins-model";
 
 const jenkinsKpiColor = ({ theme, value }) => {
   if (value < 70) return theme.palette.errorColor;
@@ -20,20 +24,6 @@ const Kpi = styled.span`
   font-weight: 700;
   font-size: 20px;
 `;
-
-export interface IJenkinsJobHealthProps {
-  url: string;
-  jobs: Array<IJenkinsJob>;
-  interval: number;
-  title: string;
-  authKey: string;
-}
-
-export interface IJenkinsJobHealthState {
-  loading: boolean;
-  error: boolean;
-  builds: Array<IJenkinsBuild>;
-}
 
 export default class JenkinsJobHealth extends Component<
   IJenkinsJobHealthProps,

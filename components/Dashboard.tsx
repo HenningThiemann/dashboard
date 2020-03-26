@@ -22,12 +22,10 @@ const Container = styled.main`
   min-height: 100vh;
 `;
 
-export interface IDashboardProps {
-  theme: any;
-  title: string;
-}
-
-export default class Dashboard extends Component<IDashboardProps, {}> {
+export default class Dashboard extends Component<
+  { theme: any; title: string },
+  {}
+> {
   render() {
     const { theme, title, children } = this.props;
     return (
@@ -41,9 +39,7 @@ export default class Dashboard extends Component<IDashboardProps, {}> {
               rel="stylesheet"
             />
           </Head>
-
           {children}
-
           <GlobalStyle />
         </Container>
       </ThemeProvider>

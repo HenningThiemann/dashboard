@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
-import { array, number, object, string } from "yup";
 import Widget from "../../Widget";
 import Table, { Td, Th } from "../../Table";
 import Badge from "../../Badge";
 import LoadingIndicator from "../../LoadingIndicator";
 import { basicAuthHeader } from "../../../lib/auth";
-import { IJenkinsBuild, IJenkinsJob } from "./JenkinsBuildBuration";
+import {
+  IJenkinsBuild,
+  IJenkinsJobStatusProps,
+  IJenkinsJobStatusState,
+} from "./jenkins-model";
 
 const jenkinsBadgeColor = ({ theme, status }) => {
   switch (status) {
@@ -29,20 +32,6 @@ const jenkinsBadgeColor = ({ theme, status }) => {
 const JenkinsBadge = styled(Badge)`
   background-color: ${jenkinsBadgeColor};
 `;
-
-export interface IJenkinsJobStatusProps {
-  url: string;
-  jobs: Array<IJenkinsJob>;
-  interval: number;
-  title: string;
-  authKey: string;
-}
-
-export interface IJenkinsJobStatusState {
-  loading: boolean;
-  error: boolean;
-  builds: Array<IJenkinsBuild>;
-}
 
 export default class JenkinsJobStatus extends Component<
   IJenkinsJobStatusProps,

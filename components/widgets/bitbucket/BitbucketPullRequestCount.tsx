@@ -1,36 +1,12 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
-import { object, string, number, array } from "yup";
 import Widget from "../../Widget";
 import Counter from "../../Counter";
 import { basicAuthHeader } from "../../../lib/auth";
-import React from "react";
-
-const schema = object().shape({
-  url: string().url().required(),
-  project: string().required(),
-  repository: string().required(),
-  interval: number(),
-  title: string(),
-  users: array().of(string()),
-  authKey: string(),
-});
-
-export interface IBitbucketPullRequestCountProps {
-  interval: number;
-  title: string;
-  users: Array<any>;
-  authKey: string;
-  url: string;
-  project: string;
-  repository: string;
-}
-
-export interface IBitbucketPullRequestCountState {
-  count: number;
-  error: boolean;
-  loading: boolean;
-}
+import {
+  IBitbucketPullRequestCountProps,
+  IBitbucketPullRequestCountState,
+} from "./bitbucket-model";
 
 export default class BitbucketPullRequestCount extends Component<
   IBitbucketPullRequestCountProps,
@@ -51,13 +27,10 @@ export default class BitbucketPullRequestCount extends Component<
   timeout: any = 0;
 
   componentDidMount() {
-    schema
-      .validate(this.props)
-      .then(() => this.fetchInformation())
-      .catch((err) => {
-        console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
-        this.setState({ error: true, loading: false });
-      });
+    this.fetchInformation().catch((err) => {
+      console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
+      this.setState({ error: true, loading: false });
+    });
   }
 
   componentWillUnmount() {
@@ -75,7 +48,7 @@ export default class BitbucketPullRequestCount extends Component<
       );
       const json = await res.json();
 
-      let count;
+      let count: number;
       if (users.length) {
         count = json.values.filter((el) => users.includes(el.user.slug)).length;
       } else {

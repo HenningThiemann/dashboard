@@ -7,38 +7,17 @@ import Link from "../../Link";
 import Table, { Td, Th } from "../../Table";
 import LoadingIndicator from "../../LoadingIndicator";
 import { basicAuthHeader } from "../../../lib/auth";
+import {
+  IJenkinsBuild,
+  IJenkinsBuildBurationProps,
+  IJenkinsBuildBurationState,
+} from "./jenkins-model";
 
 const Kpi = styled.span`
   color: ${(props) => props.theme.palette.primaryColor};
   font-weight: 700;
   font-size: 20px;
 `;
-
-export interface IJenkinsJob {
-  label: string;
-  path: string;
-  branch: string;
-}
-
-export interface IJenkinsBuild {
-  name: string;
-  url: string;
-  duration: number;
-}
-
-export interface IJenkinsBuildBurationProps {
-  url: string;
-  jobs: Array<IJenkinsJob>;
-  interval: number;
-  title: string;
-  authKey: string;
-}
-
-export interface IJenkinsBuildBurationState {
-  loading: boolean;
-  error: boolean;
-  builds: Array<IJenkinsBuild>;
-}
 
 export default class JenkinsBuildDuration extends Component<
   IJenkinsBuildBurationProps,

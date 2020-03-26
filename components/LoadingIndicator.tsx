@@ -44,14 +44,7 @@ const Circle = styled.circle`
   transform-origin: center;
 `;
 
-export interface ILoadingIndicatorProps {
-  size: string;
-}
-
-export default class LoadingIndicator extends Component<
-  ILoadingIndicatorProps,
-  {}
-> {
+export default class LoadingIndicator extends Component<{ size: string }, {}> {
   render() {
     const svgSize = this.props.size === "small" ? "1.75em" : "5em";
     return (

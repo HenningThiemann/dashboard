@@ -3,20 +3,7 @@ import fetch from "isomorphic-unfetch";
 import Widget from "../../Widget";
 import Counter from "../../Counter";
 import { basicAuthHeader } from "../../../lib/auth";
-
-export interface IGitHubIssueCountProps {
-  interval: number;
-  title: string;
-  authKey: string;
-  owner: string;
-  repository: string;
-}
-
-export interface IGitHubIssueCountState {
-  count: number;
-  error: boolean;
-  loading: boolean;
-}
+import { IGitHubIssueCountProps, IGitHubIssueCountState } from "./github-model";
 
 export default class GitHubIssueCount extends Component<
   IGitHubIssueCountProps,
@@ -36,14 +23,10 @@ export default class GitHubIssueCount extends Component<
   timeout: any = 0;
 
   componentDidMount() {
-    this.fetchInformation()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
-        this.setState({ error: true, loading: false });
-      });
+    this.fetchInformation().catch((err) => {
+      console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
+      this.setState({ error: true, loading: false });
+    });
   }
 
   componentWillUnmount() {

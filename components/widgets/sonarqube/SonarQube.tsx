@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import fetch from "isomorphic-unfetch";
-import { object, string, number } from "yup";
 import Widget from "../../Widget";
-import Table, { Th, Td } from "../../Table";
+import Table, { Td, Th } from "../../Table";
 import Badge from "../../Badge";
 import { basicAuthHeader } from "../../../lib/auth";
+import { ISonarQubeProps, ISonarQubeState } from "./sonarqube-model";
 
 const alertColor = ({ theme, children }) => {
   switch (children) {
@@ -41,28 +41,6 @@ const sonarBadgeColor = ({ theme, children }) => {
 const SonarBadge = styled(Badge)`
   background-color: ${sonarBadgeColor};
 `;
-
-const schema = object().shape({
-  url: string().url().required(),
-  componentKey: string().required(),
-  interval: number(),
-  title: string(),
-  authKey: string(),
-});
-
-export interface ISonarQubeProps {
-  url: string;
-  componentKey: string;
-  interval: number;
-  title: string;
-  authKey: string;
-}
-
-export interface ISonarQubeState {
-  measures: Array<any>;
-  loading: boolean;
-  error: boolean;
-}
 
 export default class SonarQube extends Component<
   ISonarQubeProps,

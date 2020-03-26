@@ -3,20 +3,10 @@ import fetch from "isomorphic-unfetch";
 import Widget from "../../Widget";
 import Counter from "../../Counter";
 import { basicAuthHeader } from "../../../lib/auth";
-
-export interface IJiraSprintDaysRemainingProps {
-  url: string;
-  boardId: number;
-  interval: number;
-  title: string;
-  authKey: string;
-}
-
-export interface IJiraSprintDaysRemainingState {
-  days: number;
-  error: boolean;
-  loading: boolean;
-}
+import {
+  IJiraSprintDaysRemainingProps,
+  IJiraSprintDaysRemainingState,
+} from "./jira-model";
 
 export default class JiraSprintDaysRemaining extends Component<
   IJiraSprintDaysRemainingProps,

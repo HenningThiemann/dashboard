@@ -1,32 +1,12 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
-import { number, object, string } from "yup";
 import Widget from "../../Widget";
 import Counter from "../../Counter";
 import { basicAuthHeader } from "../../../lib/auth";
-
-const schema = object().shape({
-  url: string().url().required(),
-  index: string().required(),
-  query: string().required(),
-  interval: number(),
-  title: string(),
-});
-
-export interface IElasticsearchHitCountProps {
-  interval: number;
-  title: string;
-  authKey: string;
-  index: string;
-  query: string;
-  url: string;
-}
-
-export interface IElasticsearchHitCountState {
-  count: number;
-  error: boolean;
-  loading: boolean;
-}
+import {
+  IElasticsearchHitCountProps,
+  IElasticsearchHitCountState,
+} from "./elasticsearch-model";
 
 export default class ElasticsearchHitCount extends Component<
   IElasticsearchHitCountProps,
@@ -46,13 +26,10 @@ export default class ElasticsearchHitCount extends Component<
   timeout: any = 0;
 
   componentDidMount() {
-    schema
-      .validate(this.props)
-      .then(() => this.fetchInformation())
-      .catch((err) => {
-        console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
-        this.setState({ error: true, loading: false });
-      });
+    this.fetchInformation().catch((err) => {
+      console.error(`${err.name} @ ${this.constructor.name}`, err.errors);
+      this.setState({ error: true, loading: false });
+    });
   }
 
   componentWillUnmount() {

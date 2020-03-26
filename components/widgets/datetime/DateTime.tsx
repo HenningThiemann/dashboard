@@ -1,8 +1,8 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import tinytime from "tinytime";
 import styled from "styled-components";
 import Widget from "../../Widget";
-import React from "react";
+import { IDateTimeProps, IDateTimeState } from "./datetime-model";
 
 const TimeItem = styled.div`
   font-size: 4em;
@@ -13,14 +13,6 @@ const DateItem = styled.div`
   font-size: 1.5em;
   text-align: center;
 `;
-
-export interface IDateTimeProps {
-  interval: number;
-}
-
-export interface IDateTimeState {
-  date: Date;
-}
 
 export default class DateTime extends Component<
   IDateTimeProps,

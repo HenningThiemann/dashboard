@@ -1,22 +1,11 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
-import { object, string, number, boolean } from "yup";
 import CircleProgress from "../../CircleProgress";
 import Widget from "../../Widget";
-
-export interface IPageSpeedInsideScoreProps {
-  url: string;
-  filterThirdPartyResources: boolean;
-  interval: number;
-  strategy: string;
-  title: string;
-}
-
-export interface IPageSpeedInsideScoreState {
-  score: number;
-  loading: boolean;
-  error: boolean;
-}
+import {
+  IPageSpeedInsideScoreProps,
+  IPageSpeedInsideScoreState,
+} from "./pagespeed-model";
 
 export default class PageSpeedInsightsScore extends Component<
   IPageSpeedInsideScoreProps,
@@ -83,7 +72,7 @@ export default class PageSpeedInsightsScore extends Component<
     const { title } = this.props;
     return (
       <Widget title={title} loading={loading} error={error}>
-        <CircleProgress value={score} max={100} radius={90} unit={""} />
+        <CircleProgress value={score} />
       </Widget>
     );
   }

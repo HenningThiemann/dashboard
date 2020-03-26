@@ -37,11 +37,16 @@ export interface ICircleProgressProps {
   value: number;
 }
 
-// export default ({ max = 100, radius = 90, unit = "", value }) => {
 export default class CircleProgress extends Component<
   ICircleProgressProps,
   {}
 > {
+  static defaultProps = {
+    max: 100,
+    radius: 90,
+    unit: "",
+  };
+
   render() {
     const { radius, max, value, unit } = this.props;
     const strokeDasharray = 2 * radius * Math.PI;
